@@ -22,4 +22,4 @@ def new(request):
             return redirect('/about')
     else:
         form=BlogForm()
-    return render(request, 'blog/index.html', {'form': form})            
+    return render(request, 'blog/new.html', {'form': form})            

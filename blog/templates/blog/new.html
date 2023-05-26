@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Django Blog</title>
+</head>
+<body>
+
+    <form method="POST" action="/new/">
+        {% csrf_token %}
+
+        <div>
+            {{form.title}}
+        </div>
+        <div>
+            {{form.description}}
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
+
