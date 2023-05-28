@@ -65,3 +65,12 @@ def destroy_view(request, id):
     blog = Blog.objects.get(id=id)
     blog.delete()
     return redirect('/')
+
+def search_blog(request):
+
+    if request.method == "POST":
+        search = request.POST['search']
+        blogs = Blog.objects.filter(title__contains = search)
+        return render(request, "blog/search_blog.html", {"search": search, "blogs": blogs})
+    else:
+        return render(request, "blog/search_blog.html", {})

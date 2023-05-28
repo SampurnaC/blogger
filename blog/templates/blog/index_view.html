@@ -7,6 +7,14 @@
 
     <h1>Lists of Blogs</h1>
 
+
+    <form method="POST" action="{% url 'search-blog' %}">
+      {% csrf_token %}
+      <input type="search" name="search"/>
+      <button type="submit">Search</button>
+    </form>
+
+
     {% for blog in blogs %}
         <h1>{{blog.id}}</h1>
 

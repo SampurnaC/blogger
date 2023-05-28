@@ -1,0 +1,13 @@
+
+{% if search %}
+    <h1>You searched for {{search}}</h1>
+    <br />
+
+    {% for blog in blogs %}
+        <h1>{{blog.title}}</h1>
+        <br />
+        <p>{{blog.description}}</p>
+    {% endfor %}
+{% else %}
+    <h1>You forgot to search</h1>
+{% endif %}
