@@ -25,6 +25,13 @@ def new_view(request):
     return render(request, 'blog/new_view.html', {'form': form})            
 
 
+def detail_view(request, id):
+    context = {}
+    context["data"] = Blog.objects.get(id=id)
+    return render(request, "blog/detail_view.html", context)
+
+
+
 # def edit(request, id):
 
 #     blog = Blog.objects.get(id=id)

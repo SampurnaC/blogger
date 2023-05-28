@@ -5,7 +5,6 @@
 </head>
 <body>
 
-    <h1>Lists of Blogs</h1>
 
 
     <form method="POST" action="{% url 'search-blog' %}">
@@ -13,14 +12,16 @@
       <input type="search" name="search"/>
       <button type="submit">Search</button>
     </form>
+    <h1>Lists of Blogs</h1>
 
+    <a href="new">Create New Blog</a>
 
     {% for blog in blogs %}
-        <h1>{{blog.id}}</h1>
 
         <h1>{{blog.title}}</h1>
         <h2>{{blog.description}}</h2>
         <a href="new">Create New Blog</a>
+        <a href="show/{{blog.id}}">Show</a>
         <a href="edit/{{blog.id}}">Edit</a>
         <a href='delete/{{blog.id}}'>Delete</a>
 
