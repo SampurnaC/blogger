@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Django Blog</title>
+</head>
+<body>
+
+    <h1>Lists of Blogs</h1>
+
+    {% for blog in blogs %}
+        <h1>{{blog.id}}</h1>
+
+        <h1>{{blog.title}}</h1>
+        <h2>{{blog.description}}</h2>
+        <a href="new">Create New Blog</a>
+        <a href="edit/{{blog.id}}">Edit</a>
+        <a href='delete/{{blog.id}}'>Delete</a>
+
+    {% endfor %}
+</body>
+</html>
+

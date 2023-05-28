@@ -6,3 +6,7 @@ class BlogForm(forms.ModelForm):
         model = Blog
         fields="__all__"
 
+class EditForm(forms.ModelForm):
+    class Meta:
+        model = Blog
+        fields="__all__"
