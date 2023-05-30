@@ -10,5 +10,6 @@ urlpatterns = [
     # path('update/<int:id>', views.update, name='update'),
     path('delete/<int:id>', views.destroy_view, name='delete'),
     path('search/', views.search_blog, name='search-blog'),
+    path('blog/<int:id>/comment', views.add_comment, name='add_comment'),
 
 ]

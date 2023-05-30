@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from blog.forms import BlogForm, EditForm
+from blog.forms import BlogForm, EditForm, CommentForm
 from blog.models import Blog
 
 # Create your views here.
@@ -30,24 +30,6 @@ def detail_view(request, id):
     context["data"] = Blog.objects.get(id=id)
     return render(request, "blog/detail_view.html", context)
 
-
-
-# def edit(request, id):
-
-#     blog = Blog.objects.get(id=id)
-#     return render(request, 'blog/edit.html', {'blog': blog})
-
-# def update(request, id):
-
-#     blog = Blog.objects.get(id=id)
-#     breakpoint()
-
-#     form = BlogForm(request.POST, instance=blog)
-    
-#     if form.is_valid():
-#         form.save()
-#         return redirect('/')
-#     return render(request, 'blog/edit.html', {'form': form})
 
 
 def update_view(request, id):
@@ -81,3 +63,15 @@ def search_blog(request):
         return render(request, "blog/search_blog.html", {"search": search, "blogs": blogs})
     else:
         return render(request, "blog/search_blog.html", {})
+
+
+def add_comment(request, id):
+    if request.method == "POST":
+        # blog = Blog.objects.get(id=id)
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    else:
+        form=CommentForm()
+    return render(request, 'blog/add_comment.html', {'form': form})

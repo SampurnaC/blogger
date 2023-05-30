@@ -3,3 +3,21 @@
     <br />
     {{data.description}}
 </div>
+
+<div>
+    <h2>Comments</h2>
+
+    <a href="{% url 'add_comment' data.id %}">Add Comment</a>
+    <br /> 
+    {% if not data.comments.all %}
+        No Comments yet 
+        {% comment %} <a href="#">Add Comment</a> {% endcomment %}
+    {% else %}
+        {% for comment in data.comments.all %}
+            {{comment.body}} - 
+            {{comment.date_added}}
+            <br />
+            <br />
+        {% endfor %}    
+    {% endif %}
+</div>
