@@ -3,11 +3,16 @@ from django.http import HttpResponse
 from blog.forms import BlogForm, EditForm, CommentForm
 from blog.models import Blog
 
+from django.core.paginator import Paginator
 # Create your views here.
 
 def index_view(request):
 
-    blogs = Blog.objects.all()
+    # blogs = Blog.objects.all()
+
+    p = Paginator(Blog.objects.all(), 10)
+    page = request.GET.get('page')
+    blogs = p.get_page(page)
 
     return render(request, 'blog/index_view.html', {'blogs': blogs})
 
