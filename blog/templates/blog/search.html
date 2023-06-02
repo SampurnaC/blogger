@@ -1,0 +1,5 @@
+<form method="POST" action="{% url 'search-blog' %}" class="form-group col-md-6 d-flex justify-content-end pt-5">
+    {% csrf_token %}
+    <input type="search" name="search" class="form-control" />
+    <button type="submit" class="btn btn-success">Search</button>
+  </form>

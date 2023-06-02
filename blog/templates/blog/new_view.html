@@ -1,22 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Django Blog</title>
+
 </head>
 <body>
+    {% extends 'blog/base.html' %}
 
-    <form method="POST" action="/new/">
-        {% csrf_token %}
+    {% block content %}
+        <div class="container">
+            <form method="POST" action="/new/">
+                {% csrf_token %}
 
-        <div>
-            {{form.title}}
+                <div class="col-md-6">
+                    {{form.title.label}}
+                    {{form.title}}
+                </div>
+                <br/>
+                <div class="col-md-6">
+                    {{form.description.label}}
+                    {{form.description}}
+                </div>
+                <br/>
+
+                <div class="col-md-6">
+                    {{form.category.label}}
+                    {{form.category}}
+                {% comment %} {{form}}     {% endcomment %}
+                <button type="submit" class="btn btn-primary">Create New Blog</button>
+            </form>
         </div>
-        <div>
-            {{form.description}}
-        </div>
+    {% endblock %}
 
-        <button type="submit">Create New Blog</button>
-    </form>
 </body>
 </html>
 

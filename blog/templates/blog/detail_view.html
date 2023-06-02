@@ -1,23 +1,49 @@
-<div>
-    {{data.title}}
-    <br />
-    {{data.description}}
-</div>
+<!DOCTYPE html>
+<html>
+<head>
 
-<div>
-    <h2>Comments</h2>
+</head>
+<body>
+    {% extends 'blog/base.html' %}
+    {% block content %}
 
-    <a href="{% url 'add_comment' data.id %}">Add Comment</a>
-    <br /> 
-    {% if not data.comments.all %}
-        No Comments yet 
-        {% comment %} <a href="#">Add Comment</a> {% endcomment %}
-    {% else %}
-        {% for comment in data.comments.all %}
-            {{comment.body}} - 
-            {{comment.date_added}}
-            <br />
-            <br />
-        {% endfor %}    
-    {% endif %}
-</div>
+        <div class="container pt-5">
+
+            <div class="col-md-6">
+                Title:
+                {{data.title}}
+            </div>
+            <br/>
+            <div class="col-md-6">
+                Description:
+                {{data.description}}
+            </div>
+            <br/>
+
+         
+            <br/>
+
+            <div>
+                <a href="{% url 'add_comment' data.id %}" class="btn btn-primary">Add Comment</a>
+
+                <h3>Comments</h3>
+            
+                <br /> 
+                {% if not data.comments.all %}
+                    No Comments yet 
+                    {% comment %} <a href="#">Add Comment</a> {% endcomment %}
+                {% else %}
+                    {% for comment in data.comments.all %}
+                        {{comment.body}} - 
+                        {{comment.date_added}}
+                        <br />
+                        <br />
+                    {% endfor %}    
+                {% endif %}
+            </div>
+        
+        </div> 
+
+    {% endblock %}
+</body>
+</html>

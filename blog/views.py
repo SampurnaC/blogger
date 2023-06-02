@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from blog.forms import BlogForm, EditForm, CommentForm
-from blog.models import Blog
+from blog.models import Blog, Category
 
 from django.core.paginator import Paginator
 # Create your views here.
@@ -9,12 +9,24 @@ from django.core.paginator import Paginator
 def index_view(request):
 
     # blogs = Blog.objects.all()
+    category=request.GET.get('category')
 
-    p = Paginator(Blog.objects.all(), 10)
-    page = request.GET.get('page')
-    blogs = p.get_page(page)
+    if category == None:
+        p = Paginator(Blog.objects.all(), 10)
+        page = request.GET.get('page')
+        blogs = p.get_page(page)
+    else:
+        p = Paginator(Blog.objects.filter(category__name=category), 10)
+        page = request.GET.get('page')
+        blogs=p.get_page(page)
 
-    return render(request, 'blog/index_view.html', {'blogs': blogs})
+    # p = Paginator(Blog.objects.all(), 10)
+    # page = request.GET.get('page')
+    # blogs = p.get_page(page)
+
+    categories=Category.objects.all()
+
+    return render(request, 'blog/index_view.html', {'blogs': blogs, 'categories': categories})
 
 def about(request):
     return render(request, 'blog/about.html')
