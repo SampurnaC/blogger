@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from blog.forms import BlogForm, EditForm, CommentForm
+from blog.forms import BlogForm, EditForm, CommentForm, SignupForm
 from blog.models import Blog, Category
 
 from django.core.paginator import Paginator
@@ -92,3 +92,17 @@ def add_comment(request, id):
     else:
         form=CommentForm()
     return render(request, 'blog/add_comment.html', {'form': form})
+def signup(request):
+    if request.method == 'POST':
+        form = SignupForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+
+            return redirect('/login/')
+    else:
+        form = SignupForm()
+
+    return render(request, 'blog/signup.html', {
+        'form': form
+    })

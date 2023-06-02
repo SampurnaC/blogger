@@ -12,4 +12,6 @@ urlpatterns = [
     path('search/', views.search_blog, name='search-blog'),
     path('blog/<int:id>/comment', views.add_comment, name='add_comment'),
 
+    path('signup/', views.signup, name='signup'),
+
 ]
