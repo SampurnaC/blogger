@@ -68,7 +68,7 @@ def update_view(request, id):
     # context["obj"] = obj
 
 
-    return render(request, "blog/update_view.html", {"form": form})
+    return render(request, "blog/update_view.html", {"form": form, "obj": obj})
 
 def destroy_view(request, id):
     blog = Blog.objects.get(id=id)
