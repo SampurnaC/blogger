@@ -21,6 +21,7 @@
               <a href="show/{{blog.id}}"><i class="bi bi-eye-fill"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               {% comment %} Current User:{{user.id}}
               Blog User:{{blog.created_by.id}} {% endcomment %}
+              
               {% if user.id == blog.created_by.id %}
                 <a href="edit/{{blog.id}}"><i class="bi bi-pencil-fill"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <a href='delete/{{blog.id}}'><i class="bi bi-trash"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
