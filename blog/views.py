@@ -36,7 +36,9 @@ def new_view(request):
     if request.method == "POST":
         form = BlogForm(request.POST)
         if form.is_valid():
-            form.save()
+            blog = form.save()
+            blog.created_by=request.user
+            blog.save()
             return redirect('/')
     else:
         form=BlogForm()

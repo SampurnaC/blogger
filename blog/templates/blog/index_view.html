@@ -21,6 +21,7 @@
               <a href="show/{{blog.id}}"><i class="bi bi-eye-fill"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <a href="edit/{{blog.id}}"><i class="bi bi-pencil-fill"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <a href='delete/{{blog.id}}'><i class="bi bi-trash"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <p>Created by: {{blog.created_by}}</p>
               <hr />
             {% endfor %}
             <a href="new" class="btn btn-primary">Create New Blog</a>

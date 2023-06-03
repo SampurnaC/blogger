@@ -34,6 +34,7 @@
                     {% comment %} <a href="#">Add Comment</a> {% endcomment %}
                 {% else %}
                     {% for comment in data.comments.all %}
+                        <p>Comment Added By: {{data.created_by}}</p>
                         {{comment.body}} - 
                         {{comment.date_added}}
                         <br />
