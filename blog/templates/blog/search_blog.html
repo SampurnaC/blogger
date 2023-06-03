@@ -1,4 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Django Blog</title>
 
+</head>
+<body>
+    {% extends 'blog/base.html' %}
+
+    {% block content %}
+      <div class="container">
+        <div class="row">
 {% if search %}
     <h1>You searched for {{search}}</h1>
     <br />
@@ -11,3 +22,6 @@
 {% else %}
     <h1>You forgot to search</h1>
 {% endif %}
+{% endblock %}
+</body>
+</html>

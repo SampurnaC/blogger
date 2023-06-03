@@ -7,28 +7,32 @@
     {% extends 'blog/base.html' %}
 
     {% block content %}
-        <div class="container">
-            <form method="POST" action="/new/">
-                {% csrf_token %}
+        {% if user.is_authenticated %}
+            <div class="container">
+                <form method="POST" action="/new/">
+                    {% csrf_token %}
 
-                <div class="col-md-6">
-                    {{form.title.label}}
-                    {{form.title}}
-                </div>
-                <br/>
-                <div class="col-md-6">
-                    {{form.description.label}}
-                    {{form.description}}
-                </div>
-                <br/>
+                    <div class="col-md-6">
+                        {{form.title.label}}
+                        {{form.title}}
+                    </div>
+                    <br/>
+                    <div class="col-md-6">
+                        {{form.description.label}}
+                        {{form.description}}
+                    </div>
+                    <br/>
 
-                <div class="col-md-6">
-                    {{form.category.label}}
-                    {{form.category}}
-                {% comment %} {{form}}     {% endcomment %}
-                <button type="submit" class="btn btn-primary">Create New Blog</button>
-            </form>
-        </div>
+                    <div class="col-md-6">
+                        {{form.category.label}}
+                        {{form.category}}
+                    {% comment %} {{form}}     {% endcomment %}
+                    <button type="submit" class="btn btn-primary">Create New Blog</button>
+                </form>
+            </div>
+        {% else %}
+            <h1>Please login to create a new post</h1>    
+        {% endif %}
     {% endblock %}
 
 </body>
