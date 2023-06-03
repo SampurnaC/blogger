@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from blog.forms import BlogForm, EditForm, CommentForm, SignupForm
 from blog.models import Blog, Category
+from django.contrib.auth import logout
 
 from django.core.paginator import Paginator
 # Create your views here.
@@ -106,3 +107,7 @@ def signup(request):
     return render(request, 'blog/signup.html', {
         'form': form
     })
+
+def logout_user(request):
+    logout(request)
+    return redirect('/')
