@@ -12,7 +12,7 @@
                 <form method="POST" action="/new/">
                     {% csrf_token %}
 
-                    <div class="col-md-6">
+                    {% comment %} <div class="col-md-6">
                         {{form.title.label}}
                         {{form.title}}
                     </div>
@@ -26,7 +26,12 @@
                     <div class="col-md-6">
                         {{form.category.label}}
                         {{form.category}}
-                    {% comment %} {{form}}     {% endcomment %}
+                    </div> {% endcomment %}
+
+                    {% comment %} <div class="col-md-6">
+                        {{request.user.created_by.as_hidden}}
+                    </div> {% endcomment %}
+                    {{form}}
                     <button type="submit" class="btn btn-primary">Create New Blog</button>
                 </form>
             </div>

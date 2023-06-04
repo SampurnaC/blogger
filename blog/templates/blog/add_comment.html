@@ -13,10 +13,10 @@
             <form method="POST">
                 {% csrf_token %}
 
-                <div class="col-md-6">
+                {% comment %} <div class="col-md-6">
                     {{form.blog.label}}
                     {{form.blog}}
-                </div>
+                </div> {% endcomment %}
                 <br/>
                 <div class="col-md-6">
                     {{form.body.label}}

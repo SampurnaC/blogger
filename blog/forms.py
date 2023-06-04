@@ -14,6 +14,7 @@ class BlogForm(forms.ModelForm):
 
 
         }
+        ordering = ['created_date']
 
 class EditForm(forms.ModelForm):
     class Meta:
@@ -30,7 +31,7 @@ class EditForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields=['blog', 'body']
+        fields=['body']
         widgets={
             'blog': forms.Select(attrs= {'class': 'form-control'}),
             'body': forms.Textarea(attrs= {'class': 'form-control'}),

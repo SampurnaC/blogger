@@ -13,11 +13,11 @@ def index_view(request):
     category=request.GET.get('category')
 
     if category == None:
-        p = Paginator(Blog.objects.all(), 10)
+        p = Paginator(Blog.objects.all().order_by('-created_date'), 10)
         page = request.GET.get('page')
         blogs = p.get_page(page)
     else:
-        p = Paginator(Blog.objects.filter(category__name=category), 10)
+        p = Paginator(Blog.objects.filter(category__name=category).order_by('-created_date'), 10)
         page = request.GET.get('page')
         blogs=p.get_page(page)
 
@@ -35,6 +35,7 @@ def about(request):
 def new_view(request):
     if request.method == "POST":
         form = BlogForm(request.POST)
+        
         if form.is_valid():
             blog = form.save()
             blog.created_by=request.user
@@ -46,9 +47,11 @@ def new_view(request):
 
 
 def detail_view(request, id):
-    context = {}
-    context["data"] = Blog.objects.get(id=id)
-    return render(request, "blog/detail_view.html", context)
+    # context = {}
+    # context["data"] = Blog.objects.get(id=id)
+    data = Blog.objects.get(id=id)
+
+    return render(request, "blog/detail_view.html", {'data': data})
 
 
 
@@ -87,14 +90,16 @@ def search_blog(request):
 
 def add_comment(request, id):
     if request.method == "POST":
-        # blog = Blog.objects.get(id=id)
+        blog = Blog.objects.get(id=id)
         form = CommentForm(request.POST)
         if form.is_valid():
+            form.instance.blog_id=blog.id
             form.save()
             return redirect('/')
     else:
         form=CommentForm()
     return render(request, 'blog/add_comment.html', {'form': form})
+
 def signup(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)

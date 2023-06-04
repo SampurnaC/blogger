@@ -25,7 +25,6 @@
 
             <div>
                 <a href="{% url 'add_comment' data.id %}" class="btn btn-primary">Add Comment</a>
-
                 <h3>Comments</h3>
             
                 <br /> 
@@ -34,7 +33,7 @@
                     {% comment %} <a href="#">Add Comment</a> {% endcomment %}
                 {% else %}
                     {% for comment in data.comments.all %}
-                        <p>Comment Added By: {{data.created_by}}</p>
+                        <p>Comment Added By: {{request.user}}</p>
                         {{comment.body}} - 
                         {{comment.date_added}}
                         <br />
